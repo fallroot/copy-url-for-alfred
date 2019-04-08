@@ -53,6 +53,13 @@ class Chrome extends Browser {
   }
 }
 
+class Vivaldi extends Browser {
+  constructor() {
+      super('com.vivaldi.Vivaldi');
+      this.key.currentTab = 'activeTab';
+  }
+}
+
 class Safari extends Browser {
   constructor () {
     super('com.apple.Safari')
@@ -130,6 +137,8 @@ class App {
 
     if (frontmost === 'Google Chrome') {
       return new Chrome().currentTabInfo
+    } else if (frontmost === 'Vivaldi') {
+      return new Vivaldi().currentTabInfo
     } else if (frontmost === 'Safari') {
       return new Safari().currentTabInfo
     } else if (frontmost === 'Safari Technology Preview') {
@@ -137,6 +146,8 @@ class App {
     } else {
       if (processes.byName('Google Chrome').exists()) {
         return new Chrome().currentTabInfo
+      } else if (processes.byName('Vivaldi').exists()) {
+        return new Vivaldi().currentTabInfo
       } else if (processes.byName('Safari').exists()) {
         return new Safari().currentTabInfo
       } else if (processes.byName('Safari Technology Preview').exists()) {
